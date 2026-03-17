@@ -20,7 +20,7 @@ You should see two directories:
 * The API must connect to a Redis database using the `REDIS_URL` environment variable.
 * **The Zero-Trust Network Rule:** The Frontend, API, and Database containers **must not** expose any ports to the host machine. 
 * All external traffic must flow through a single Reverse Proxy / API Gateway (e.g., Nginx Proxy Manager).
-* The Gateway must be the *only* container allowed to bind to the host's ports (80 for HTTP, 81 for Admin UI).
+* The Gateway must be the *only* container allowed to bind to the host's ports (80 for HTTP, 81 for Admin UI, 443 for HTTPS).
 
 ---
 
