@@ -14,5 +14,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build ./api --tag api
+
+    - uses: docker/login-action@v4
+      with:
+            registry: ghcr.io
+            username: ${{ github.actor }}
+            password: ${{ secrets.MY_NEW_TOKEN }}
+
+    - uses: docker/build-push-action@v4
+      with:
+            content: ./api
+            push: true
+            tags: ghcr.io/${{ github.actor }}/cloud-api:latest
+
+    - uses: docker/build-push-action@v4
+      with:
+            content: ./frontend
+            push: true
+            tags: ghcr.io/${{ github.actor }}/cloud-frontend:latest
