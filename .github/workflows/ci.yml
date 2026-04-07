@@ -21,8 +21,15 @@ jobs:
             username: ${{ github.actor }}
             password: ${{ secrets.MY_NEW_TOKEN }}
 
+    - uses: docker/setup-qemu-action@v2
+      name: Set up QEMU
+
+    - uses: docker/setup-buildx-actions@v4
+      name: Set up Docker Build
+
     - uses: docker/build-push-action@v4
       with:
+            platforms: linux/amd64, linux/arm64
             content: ./api
             push: true
             tags: ghcr.io/${{ github.actor }}/cloud-api:latest
